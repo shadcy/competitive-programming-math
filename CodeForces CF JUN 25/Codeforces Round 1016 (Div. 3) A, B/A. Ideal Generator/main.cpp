@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-06-06
+ * Created: 2025-06-07
  * Template: Competitive Programming
  */
 
@@ -82,32 +82,23 @@ vector<ll> sieve(int n) {
 
 void solve() {
     // Your solution here
-     int n, s;
-     cin>>n>>s;
-     string res;
-     vector<int>t;
-        // inputs for t
-        for (int i = 0; i < n; i++) {
-            int x;
-            cin >> x;
-            t.push_back(x);
-        }
+    int k;
+    cin>>k;
+
+
+        //inputs done
+        //we call it ideal
+        // if any number k <= n represented as the sum of palindrome of size k
+
+        //Given each array is >0
+        // Only odd numbers are ideal generators
         
-        float top = s + 0.5;
-
-        for (int i = 0; i < n; i++)
-        {
-           if(t[i] < top){
-            //  continue;
-            top+=t[i];
-            res = "Yes";
-           }
-           else{
-             res = "No";
-           }
-        }
-
-        cout<<res; 
+            if (k % 2 == 1) {
+                cout << "YES\n";
+            } else {
+                cout << "NO\n";
+            }
+        
 }
 
 int main() {
@@ -115,8 +106,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     
-    int t = 1;
-    // cin >> t;
+    int t ;
+    cin >> t;
     
     while(t--) {
         solve();

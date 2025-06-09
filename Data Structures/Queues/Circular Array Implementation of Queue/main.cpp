@@ -91,8 +91,6 @@ void solve() {
     cout << q.getFront() << " " << q.getRear() << endl;
     q.enqueue(50);
     cout << q.getFront() << " " << q.getRear() << endl;
-
-    
 }
 
 int main() {

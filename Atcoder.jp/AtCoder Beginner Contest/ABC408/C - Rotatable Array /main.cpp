@@ -100,7 +100,7 @@ int main()
 
     int n, q;
     cin >> n >> q;
-
+    //this noy saved us 
     static int a[1000001];
     rep(i, 0, n) a[i] = i + 1;
 

@@ -103,7 +103,7 @@ void solve() {
     //for ans
     vi ans(n , 0);
     //init to 0s
-    int max = s[n-1];
+    int max = s.end();
     //check for max in Bn, now we have a max val of B in B[n-1]
     for (int i = 0; i < n; i++)
     {

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-06-06
+ * Created: 2025-06-14
  * Template: Competitive Programming
  */
 
@@ -82,32 +82,30 @@ vector<ll> sieve(int n) {
 
 void solve() {
     // Your solution here
-     int n, s;
-     cin>>n>>s;
-     string res;
-     vector<int>t;
-        // inputs for t
-        for (int i = 0; i < n; i++) {
-            int x;
-            cin >> x;
-            t.push_back(x);
-        }
-        
-        float top = s + 0.5;
+    int n;
+    cin>>n;
+    int nums[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin>>nums[i];
+    }
+    int k;
+    cin>>k;
 
-        for (int i = 0; i < n; i++)
-        {
-           if(t[i] < top){
-            //  continue;
-            top+=t[i];
-            res = "Yes";
-           }
-           else{
-             res = "No";
-           }
-        }
 
-        cout<<res; 
+    //inputs are done
+    //lets cook
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+     if(nums[i] >= k){
+        res++;
+     }
+    }
+
+    cout<<res;
+    
+    
 }
 
 int main() {
@@ -116,7 +114,6 @@ int main() {
     cout.tie(NULL);
     
     int t = 1;
-    // cin >> t;
     
     while(t--) {
         solve();

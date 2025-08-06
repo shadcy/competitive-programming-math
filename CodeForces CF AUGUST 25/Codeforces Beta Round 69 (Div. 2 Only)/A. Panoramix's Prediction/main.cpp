@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-07-09
+ * Created: 2025-08-03
  * Template: Competitive Programming
  */
 
@@ -80,39 +80,22 @@ vector<ll> sieve(int n) {
     return primes;
 }
 
-void solve() {
+int main() {
     int n, m;
     cin >> n >> m;
-    vector<string> s(n);
-    read(s);
 
-    int minDiff = INT_MAX;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            int diff = 0;
-            for (int k = 0; k < m; k++) {
-                diff += abs(s[i][k] - s[j][k]);
-            }
-            minDiff = min(minDiff, diff);
-        }
+    // Find the next prime after n
+    int next = n + 1;
+    while (!isPrime(next)) {
+        next++;
     }
 
-    cout << minDiff << endl;
-}
-
-
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    
-    int t = 1;
-    cin >> t;
-    
-    while(t--) {
-        solve();
+    // Check if m is the next prime
+    if (next == m) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
     }
-    
+
     return 0;
 }

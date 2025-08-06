@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-07-09
+ * Created: 2025-08-05
  * Template: Competitive Programming
  */
 
@@ -81,26 +81,14 @@ vector<ll> sieve(int n) {
 }
 
 void solve() {
+    // Your solution here
     int n, m;
-    cin >> n >> m;
-    vector<string> s(n);
-    read(s);
+    cin>>n>>m;
 
-    int minDiff = INT_MAX;
+    
 
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            int diff = 0;
-            for (int k = 0; k < m; k++) {
-                diff += abs(s[i][k] - s[j][k]);
-            }
-            minDiff = min(minDiff, diff);
-        }
-    }
 
-    cout << minDiff << endl;
 }
-
 
 int main() {
     ios_base::sync_with_stdio(false);

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-15
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,26 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
-
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+    string s;
+    cin >> s;
+    vector<int> res;
+    int i = 0;
+    while (i < s.size()) {
+        if (s[i] == '.') {
+            res.push_back(0);
+            i += 1;
+        } 
+        else if (s[i] == '-') {
+            i += 1;
+            if (i < s.size() && s[i] == '.') {
+                res.push_back(1);
+            } else {
+                res.push_back(2);
+            }
+            i += 1; // move past the second char
         }
     }
-
-    cout << count << endl;
+    for (int x : res) cout << x;
 }
 
 int main()
@@ -128,7 +133,7 @@ int main()
     cout.tie(NULL);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     while (t--)
     {

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-06
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,21 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
-
-    for (int d = 1; d <= 9; ++d)
+    int l, r, L, R;
+    cin >> l >> r >> L >> R;
+    int inter = min(r, R) - max(l, L) + 1;
+    int ans;
+    if (inter <= 0)
     {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+        ans = 1; // disjoint intervals => lock any one door between them
     }
-
-    cout << count << endl;
+    else
+    {
+        ans = inter - 1; // lock internal doors inside intersection
+        ans += (l != L); // maybe lock left boundary if needed
+        ans += (r != R); // maybe lock right boundary if needed
+    }
+    cout << ans << '\n';
 }
 
 int main()

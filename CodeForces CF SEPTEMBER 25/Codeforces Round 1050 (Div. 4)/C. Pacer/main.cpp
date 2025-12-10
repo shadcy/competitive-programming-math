@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-22
  * Template: Competitive Programming
  */
 
@@ -101,25 +101,33 @@ vector<ll> sieve(int n)
     return primes;
 }
 
-void solve()
-{
-    // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    vector<pair<int,int>> req(n);
+    for(int i=0;i<n;i++) cin >> req[i].first >> req[i].second;
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+    int prev_time = 0, prev_side = 0;
+    long long points = 0;
+
+    for(auto [a,b] : req) {
+        int d = a - prev_time;
+        // check feasibility
+        if(d < abs(prev_side - b) || ((d - abs(prev_side - b)) % 2 != 0)) {
+            cout << -1 << "\n"; // impossible
+            return;
         }
+        points += d;  // can run every minute in this gap
+        prev_time = a;
+        prev_side = b;
     }
 
-    cout << count << endl;
+    // after last requirement
+    points += (m - prev_time);
+
+    cout << points << "\n";
 }
+
 
 int main()
 {

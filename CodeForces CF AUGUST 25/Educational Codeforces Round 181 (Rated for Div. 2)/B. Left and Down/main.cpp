@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-23
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,11 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    ll a, b, k;
+    cin >> a >> b >> k;
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
-    }
-
-    cout << count << endl;
+    ll temp = gcd(a, b);
+    write((a / temp <= k && b / temp <= k) ? 1 : 2 );
 }
 
 int main()

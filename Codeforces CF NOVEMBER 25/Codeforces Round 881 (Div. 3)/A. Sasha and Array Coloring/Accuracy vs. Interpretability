@@ -1,0 +1,53 @@
+Accuracy vs. Interpretability
+
+    The challenge: High-performing models, like deep neural networks, are often complex and difficult to interpret, while simpler, more interpretable models may sacrifice performance.
+    Open problem: Developing hybrid methods that can achieve both high accuracy and strong interpretability without a significant trade-off
+
+
+
+Scalability
+
+    The challenge: Providing meaningful explanations becomes increasingly difficult as models grow larger and more complex, especially with massive datasets.
+    Open problem: Creating XAI methods that can efficiently and effectively explain models with a large number of parameters and features
+
+
+Evaluation and standardization
+
+    The challenge: There is a lack of a unified framework for formally quantifying, measuring, and comparing different XAI techniques.
+    Open problem: Developing standardized metrics and evaluation frameworks that can assess the quality and effectiveness of explanations, ensuring they genuinely improve decision-making. 
+
+
+Trust, fairness, and safety
+
+    The challenge: Ensuring AI systems are not making decisions based on biased or spurious correlations in the data, which can lead to unfair outcomes.
+    Open problem: Developing XAI techniques that can reliably detect and mitigate bias, ensuring fairness and accountability in AI decision-making. 
+
+
+Integration and deployment
+
+    The challenge: Integrating XAI tools into existing machine learning pipelines and workflows can be difficult.
+    Open problem: Developing user-friendly tools and platforms that make it easier for developers and practitioners to apply XAI techniques efficiently in real-world applications. 
+
+
+
+Practical Challenges
+
+Regulatory and Compliance
+
+"Right to explanation" laws lack technical specifications
+Legal requirements vary globally
+Proving compliance with vague mandates is difficult
+
+
+Computational Cost
+
+GradCAM variations require multiple forward/backward passes
+LIME needs hundreds of perturbations per prediction
+LLM sparse encoder training is extremely resource-intensive
+
+
+5. User-Centric Design
+
+Different stakeholders need different explanation types (doctors vs regulators vs patients)
+Cognitive load: too much information overwhelms users
+Translating technical explanations to domain-specific language

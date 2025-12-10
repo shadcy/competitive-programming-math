@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-30
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,26 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int a, b, c;
+    cin >> a >> b >> c;
 
-    for (int d = 1; d <= 9; ++d)
+    rep(i, 0, 5)
     {
-        int num = d;
-        while (num <= n)
+        if (min(a, min(b, c)) == a)
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            a++;
+        }
+        else if (min(a, min(b, c)) == b)
+        {
+            b++;
+        }
+        else
+        {
+            c++;
         }
     }
 
-    cout << count << endl;
+    cout<<a*b*c<<endl;
 }
 
 int main()

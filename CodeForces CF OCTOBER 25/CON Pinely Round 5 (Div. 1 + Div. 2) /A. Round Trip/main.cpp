@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-10-30
  * Template: Competitive Programming
  */
 
@@ -103,22 +103,42 @@ vector<ll> sieve(int n)
 
 void solve()
 {
-    // Your solution here
+    long long r, x, d;
     int n;
-    cin >> n;
-    int count = 0;
+    cin >> r >> x >> d >> n;
 
-    for (int d = 1; d <= 9; ++d)
+    string s;
+    cin >> s;
+
+    long long low = r, high = r; 
+    int res = 0; 
+
+    for (int i = 0; i < n; i++)
     {
-        int num = d;
-        while (num <= n)
+        if (s[i] == '1')
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            // div 1
+            res++;
+            low = max(0LL, low - d);
+            high = high + d;
+        }
+        else
+        {
+            // div 2 rated if rating < x
+            if (low >= x)
+            {
+                continue;
+            }
+            res++;
+
+            // only ratings below X matter
+            high = min(high, x - 1);
+            low = max(0LL, low - d);
+            high = high + d;
         }
     }
 
-    cout << count << endl;
+    cout << res << "\n";
 }
 
 int main()

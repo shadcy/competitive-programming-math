@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-03
  * Template: Competitive Programming
  */
 
@@ -45,7 +45,7 @@ void write(T x) { cout << x << endl; }
 template <typename T>
 void write(vector<T> &v)
 {
-    trav(x, v) cout << x << " ";
+    trav(x, v) cout << x;
     cout << endl;
 }
 
@@ -104,21 +104,15 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
-
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
-    }
-
-    cout << count << endl;
+    int n, r, b;
+    cin >> n >> r >> b;
+    int p = r / (b + 1), q = r % (b + 1);
+    for (int i = 0; i < q; i++)
+        cout << string(p + 1, 'R') << 'B';
+    for (int i = q; i < b; i++)
+        cout << string(p, 'R') << 'B';
+    cout << string(p, 'R');
+    cout << endl;
 }
 
 int main()

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-28
  * Template: Competitive Programming
  */
 
@@ -103,23 +103,46 @@ vector<ll> sieve(int n)
 
 void solve()
 {
-    // Your solution here
-    int n;
+    int n, m;
     cin >> n;
-    int count = 0;
+    deque<char> res;
+    vector<char> a(n);
+    read(a);
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+    // Initialize deque with array a
+    rep(i, 0, n) {
+        res.push_back(a[i]);
+    }
+
+    cin >> m;
+    vector<char> b(m);
+    read(b);
+
+    string pos;
+    cin >> pos;
+
+    // Safety check (avoid out-of-bounds)
+    // if (sz(pos) != m) {
+    //     cerr << "Error: pos length does not match m\n";
+    //     return;
+    // }
+
+    //as we are sure that pos is always of size m;
+
+
+    rep(i, 0, m) {
+        if (pos[i] == 'D') {
+            res.push_back(b[i]);   // append at back
+        } else {
+            res.push_front(b[i]);  // insert at front
         }
     }
 
-    cout << count << endl;
+    // Convert deque<char> to string and print (cool ones)
+    string ans(res.begin(), res.end());
+    cout << ans << endl;
 }
+
 
 int main()
 {

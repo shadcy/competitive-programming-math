@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-28
  * Template: Competitive Programming
  */
 
@@ -104,36 +104,64 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
+    // from observing the test cases we can observe this cases only work when
+    // all digits are equal and 0 o.w
+    ull n;
     cin >> n;
-    int count = 0;
+    vector<ull> ans;
 
-    for (int d = 1; d <= 9; ++d)
+    ull pow10 = 10ULL; // 10^1
+    while (true)
     {
-        int num = d;
-        while (num <= n)
+        // denom = 1 + 10^k
+        // if denom > n then no further k can work
+        if (pow10 > (ULLONG_MAX - 1))
+            break; // safety (not really needed here)
+        ull denom = 1 + pow10;
+        if (denom > n)
+            break;
+
+        if (n % denom == 0)
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            ans.push_back(n / denom);
         }
+
+        // prepare next power of 10, but avoid overflow
+        if (pow10 > n / 10)
+            break; // next multiplication would exceed n or overflow
+        pow10 *= 10ULL;
     }
 
-    cout << count << endl;
-}
-
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    int t = 1;
-    cin >> t;
-
-    while (t--)
+    if (ans.empty())
     {
-        solve();
+        cout << 0 << '\n';
+    }
+    else
+    {
+        sort(ans.begin(), ans.end());
+        cout << ans.size() << '\n';
+        for (size_t i = 0; i < ans.size(); ++i)
+        {
+            if (i)
+                cout << ' ';
+            cout << ans[i];
+        }
+        cout << '\n';
     }
 
-    return 0;
-}
+    int main()
+    {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+
+        int t = 1;
+        cin >> t;
+
+        while (t--)
+        {
+            solve();
+        }
+
+        return 0;
+    }

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-10-02
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,22 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
+    /// if cat in a box bi = 1 ow bi = 0;
     int n;
     cin >> n;
-    int count = 0;
-
-    for (int d = 1; d <= 9; ++d)
+ 
+    // s is the start and f is the final
+    string s, f;
+    cin >> s >> f;
+    int A = 0, B = 0; //counter for a and b;
+    for (int i = 0; i < n; i++)
     {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+        if (s[i] == '1' && f[i] == '0')
+            A++;
+        if (s[i] == '0' && f[i] == '1')
+            B++;
     }
-
-    cout << count << endl;
+    cout << max(A, B) << '\n';
 }
 
 int main()

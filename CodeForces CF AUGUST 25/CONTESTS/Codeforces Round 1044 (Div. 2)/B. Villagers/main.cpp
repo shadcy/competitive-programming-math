@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-24
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,18 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+        int n; 
+        cin >> n;
+        vector<long long> g(n);
+        for (auto &x : g) cin >> x;
+        sort(g.begin(), g.end()); // ascending
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
-    }
+        long long ans = 0;
+        // add g[1], g[3], ... in 0-based: indices 1,3,... (the "even" positions in 1-based)
+        for (int i = 1; i < n; i += 2) ans += g[i];
+        if (n % 2 == 1) ans += g[0]; // add smallest when n is odd
 
-    cout << count << endl;
+        cout << ans << "\n";
 }
 
 int main()

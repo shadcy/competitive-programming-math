@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-24
  * Template: Competitive Programming
  */
 
@@ -106,19 +106,19 @@ void solve()
     // Your solution here
     int n;
     cin >> n;
-    int count = 0;
-
-    for (int d = 1; d <= 9; ++d)
+    vector<int> a(n);
+    unordered_map<int, int> F;
+    bool ok = false;
+    //we are just looking for duplicates thats it if >= 2 we got it
+    for (int i = 0; i < n; i++)
     {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+        cin >> a[i];
+        F[a[i]]++;
+        if (F[a[i]] >= 2)
+            ok = true; 
     }
 
-    cout << count << endl;
+    cout << (ok ? "YES\n" : "NO\n");
 }
 
 int main()

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-30
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,84 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int n, k;
+    cin >> n >> k;
 
-    for (int d = 1; d <= 9; ++d)
+    vi vals(k);
+    read(vals);
+
+    // vi res(n);
+    // sort(all(vals)); // for splitting max vals to the other vals taking O(logn)^2
+    
+    /*
+    
+        // for splitting
+    int ops = 0;
+    rep(i, 0, vals.size() - 1)
     {
-        int num = d;
-        while (num <= n)
+        if (vals[i] == 1)
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            res.pb(1);
+        }
+        else
+        {
+            rep(i, 0, vals[i])
+            {
+                res.pb(1);
+            }
+            // cost for splitting / ops for splitting
+            ops += vals[i] - 1; // for splitting
         }
     }
 
-    cout << count << endl;
+    // splitting for optimal case
+
+    // for merge
+    int mer = 0;
+    rep(i, 0, vals.size() - 1)
+    {
+      mer += vals[i];
+
+    }
+    
+    */
+
+    
+
+    // complexity earlier was O(n*logn).
+
+
+    //current complexity is O(k)+O(n)
+    int max =  INT_MIN, max_iter;
+    rep(i, 0, k){
+        if( vals[i] > max){
+            max = vals[i];
+            //we just need to erase the max at that 1 pos and should be only once
+            //so perfect if we add that here
+            //fu=huck only remove the max iter should not be in a loop
+            max_iter = i;
+        }
+    }
+    vals.erase(vals.begin() + max_iter); // remove only the max iter case; once
+
+    // write(vals); // DEBUG
+    int mer = 0;
+    rep(i, 0, vals.size())
+    {
+        // if(vals[i] == max){
+        //    continue; // skip
+        //    // we are cooked if we have 2 equal maxes in vals we might miss the case
+        //    // how to fix?
+        // }
+        // else{
+             mer += vals[i] + (vals[i] - 1);
+        // }
+    }
+
+   /*
+    total ops required will be ops required for merger and splitting.
+   */
+    cout << mer << endl;
 }
 
 int main()

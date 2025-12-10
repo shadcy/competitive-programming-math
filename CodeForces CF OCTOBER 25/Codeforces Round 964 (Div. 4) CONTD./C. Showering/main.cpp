@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-10-03
  * Template: Competitive Programming
  */
 
@@ -34,7 +34,7 @@ const int MOD = 1e9 + 7;
 const int INF = 1e9;
 const ll LINF = 1e18;
 const ld EPS = 1e-9;
-const int MAXN = 2e5 + 5;
+const int lmN = 2e5 + 5;
 
 template <typename T>
 void read(T &x) { cin >> x; }
@@ -101,24 +101,109 @@ vector<ll> sieve(int n)
     return primes;
 }
 
+// void solve()
+// {
+//     // Your solution here
+//     int n, s, m;
+//     cin >> n >> s >> m;
+
+//     // this is the condition
+//     //  we need to follow:
+
+//     // n is the number of intervals : rep --> a, b
+
+//     // s number of mins he'll require to washup
+
+//     // m amount day has  (0, 1, 2, 3, 4, ......, m).
+//     // can use iota for this
+
+//     vector<int> ms(m, 0);
+//     //  iota(ms.begin(), ms.end(), 0);
+//     // forward iter first, last, start_val
+
+//     // itll have 0, ...., m
+
+//     rep(i, 0, n)
+//     {
+//         // run for number of intervals
+//         int a, b;
+//         cin >> a >> b;
+
+//         rep(i, a, b)
+//         {
+//             ms[i] = 1;
+//         }
+//     }
+
+//     // just find the riight interval if any ow print NO
+//     //  write(ms);   //: Worked
+
+//     // //create a window of s {0, 0, 0, .., s}
+//     // vi ss(s, 0);
+
+//     // //now check if this window exists in the ms array
+//     int lm = 1, tm;
+//     rep(i, 0, ms.size() - 1)
+//     { // -1 to fuck the out-of-bounds case
+//         if (ms[i] + ms[i + 1] == 0)
+//         {
+//             lm++;
+//             tm = lm;
+//         }
+//         else
+//         {
+//             lm = 1; // to reset
+//         }
+//     }
+
+//     if (tm >= s)
+//     {
+//         // yes
+//         cout << "YES \n";
+//     }
+//     else
+//     {
+//         // no
+//         cout << "NO \n";
+//     }
+// }
+
 void solve()
 {
-    // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int n, s, m;
+    cin >> n >> s >> m;
 
-    for (int d = 1; d <= 9; ++d)
+    vector<pair<int, int>> tasks(n);
+    for (int i = 0; i < n; i++)
     {
-        int num = d;
-        while (num <= n)
+        cin >> tasks[i].first >> tasks[i].second;
+    }
+
+    // Check before first task
+    if (tasks[0].first >= s)
+    {
+        cout << "YES\n";
+        return;
+    }
+
+    // Check gaps between tasks
+    for (int i = 1; i < n; i++)
+    {
+        if (tasks[i].first - tasks[i - 1].second >= s)
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            cout << "YES\n";
+            return;
         }
     }
 
-    cout << count << endl;
+    // Check after last task
+    if (m - tasks[n - 1].second >= s)
+    {
+        cout << "YES\n";
+        return;
+    }
+
+    cout << "NO\n";
 }
 
 int main()

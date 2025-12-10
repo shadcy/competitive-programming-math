@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-12-10
  * Template: Competitive Programming
  */
 
@@ -104,28 +104,34 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int n, k;
+    cin >> n >> k;
 
-    for (int d = 1; d <= 9; ++d)
+    // skip k if got 1
+    string cls;
+    cin>>cls;
+    int res = 0;
+    int i = 0;
+    while (i < n)
     {
-        int num = d;
-        while (num <= n)
+        if (cls[i] == '1')
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            i += k + 1; // skip this + next k classes
+        }
+        else
+        {
+            res++;
+            i++;
         }
     }
 
-    cout << count << endl;
+    write(res);
 }
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout.tie(NULL);
 
     int t = 1;
     cin >> t;
@@ -134,6 +140,5 @@ int main()
     {
         solve();
     }
-
     return 0;
 }

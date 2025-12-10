@@ -11,7 +11,7 @@ class Node
 {
 public:
     // tf bro always know that the class is private by default
-    // so data will be inaccessible if not changed to public
+    // ow data will be inaccessible if not changed to public
     int data;
     Node *left, *right;
     Node(int val)

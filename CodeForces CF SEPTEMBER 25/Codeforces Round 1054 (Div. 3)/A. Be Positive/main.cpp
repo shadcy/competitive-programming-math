@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-09-28
  * Template: Competitive Programming
  */
 
@@ -101,24 +101,39 @@ vector<ll> sieve(int n)
     return primes;
 }
 
+int n(int key, vi &nums)
+{
+    int val = 0;
+    rep(i, 0, nums.size())
+    {
+        if (nums[i] == key)
+        {
+            val += 1;
+        }
+    }
+    return val;
+}
+
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int a;
+    cin >> a;
+    vi nums(a);
+    read(nums);
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+    // check the number of 1 , -1 and 0
+    // and use the formula n(-1) * 2 + n (0) * 1  // as we dont care what else are
+    // its guranteed that numbers are made of only 3 vals
+    int ops;
+    if(n(-1, nums) % 2 == 1){
+        //viz odd
+        ops = 1;
     }
-
-    cout << count << endl;
+    else {
+        ops = 0;
+    }
+    cout<<2 * ops+ n(0, nums) << endl;
 }
 
 int main()

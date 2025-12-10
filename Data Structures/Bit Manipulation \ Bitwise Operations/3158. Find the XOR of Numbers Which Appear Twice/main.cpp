@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-12-10
  * Template: Competitive Programming
  */
 
@@ -104,28 +104,35 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    vi nums(50);
+    read(nums);
 
-    for (int d = 1; d <= 9; ++d)
+    // map to find the frequency and then xor with all 2 freq
+    map<int, int> mp;
+    for (int i = 0; i < nums.size(); i++)
     {
-        int num = d;
-        while (num <= n)
+        mp[nums[i]]++;
+    }
+    // Here we have the key and the value(freq)
+    int res = 1; // as 1 ^ a = a, so info is preserved.
+    vector<int> pres(nums.size());
+    for (int i = 0; i < nums.size(); i++)
+    {
+        /* code */
+        if (mp[nums[i]] == 2)
         {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
+            // freq == 2
+            pres.push_back(nums[i]);
         }
     }
 
-    cout << count << endl;
+    write (pres);
 }
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout.tie(NULL);
 
     int t = 1;
     cin >> t;
@@ -134,6 +141,5 @@ int main()
     {
         solve();
     }
-
     return 0;
 }

@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-10-03
  * Template: Competitive Programming
  */
 
@@ -106,19 +106,22 @@ void solve()
     // Your solution here
     int n;
     cin >> n;
-    int count = 0;
 
-    for (int d = 1; d <= 9; ++d)
+    set<int> unq;
+    for (int i = 0; i < n; i++)
     {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+        int x;
+        cin >> x;
+        unq.insert(x);
     }
 
-    cout << count << endl;
+    // method for solving , check for n = 2 you'll need 3 ops, for n = 3 you'll need 
+    // 5 ops and so on so for all unique elements we are getting 2*n - 1 ops to do so
+    //which is it
+    int dis = unq.size();
+    int ops = 2 * dis - 1;
+
+    cout << ops << "\n";
 }
 
 int main()

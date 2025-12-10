@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-12
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,29 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    int n, m;
+    cin >> n >> m;
 
-    for (int d = 1; d <= 9; ++d)
+    vector<long long> a(n);
+    vector<long long> prefix(n + 1, 0);
+    for (int i = 0; i < n; ++i)
     {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+        cin >> a[i];
+        prefix[i + 1] = prefix[i] + a[i];
     }
 
-    cout << count << endl;
+    for (int i = 0; i < m; ++i)
+    {
+        long long b;
+        cin >> b;
+
+        // Find the first dormitory where prefix[dorm] >= b
+        int f = lower_bound(prefix.begin(), prefix.end(), b) - prefix.begin();
+        // The dormitory is f, room number is b - prefix[f-1]
+        cout << f << " " << (b - prefix[f - 1]) << "\n";
+    }
+
+    // as an out we have to print dorm number and kth room in that dorm
 }
 
 int main()
@@ -128,7 +136,7 @@ int main()
     cout.tie(NULL);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     while (t--)
     {

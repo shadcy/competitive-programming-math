@@ -1,6 +1,6 @@
 /*
  * Author: Shreyash (shadcy)
- * Created: 2025-08-07
+ * Created: 2025-08-19
  * Template: Competitive Programming
  */
 
@@ -104,21 +104,49 @@ vector<ll> sieve(int n)
 void solve()
 {
     // Your solution here
-    int n;
-    cin >> n;
-    int count = 0;
+    // in this our main job is to check number of evens and odds
 
-    for (int d = 1; d <= 9; ++d)
-    {
-        int num = d;
-        while (num <= n)
-        {
-            count++;
-            num = num * 10 + d; // next ordinary number: d, dd, ddd...
-        }
+    /*
+
+    // Solution 1 (Naive Way)
+
+    int n;
+    cin>>n;
+    vi nums(n);
+    read(nums);
+    int e = 0, o = 0;
+    rep(i, 0, n){
+      if(nums[i] % 2 == 0){
+         e+=nums[i];
+      }
+      else{
+        o+=nums[i];
+      }
     }
 
-    cout << count << endl;
+    if((o%2 == 0 && e%2 == 0) || (o%2 == 1 && e%2 == 1)){
+        cout<<"YES\n";
+    }
+    else{
+        cout<<"NO\n";
+    }
+
+
+    */
+
+
+    // Optimal Approach  O(n)
+    int n;
+    cin >> n;
+    vi nums(n);
+    read(nums);
+
+    int sum = 0;
+    rep(i, 0, n){
+        sum += nums[i];
+    }
+
+    sum % 2 == 0 ? cout<<"YES\n" : cout<<"NO\n";
 }
 
 int main()

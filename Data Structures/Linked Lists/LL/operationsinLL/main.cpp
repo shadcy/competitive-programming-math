@@ -42,8 +42,9 @@ public:
 // this piece of shit is using the
 Node *arraytoLL(vector<int> &arr)
 {
-    if(arr.empty()){
-       return 0;
+    if (arr.empty())
+    {
+        return 0;
     }
     // this function must convert the arr to linked list
     Node *head = new Node(arr[0]);
@@ -58,26 +59,14 @@ Node *arraytoLL(vector<int> &arr)
     return head;
 }
 
-void printLL(Node *head)
-{
-    Node *curr = head;
-    while (curr != nullptr)
-    {
-        /* code */
-        cout << curr->data << "->";
-        curr = curr->next;
-    }
-    cout << "NULL" << endl;
-}
-// hi lol
-
 class Operation
 {
     // this class does is to give access to diff operations performed on the LL
     // as the node class is all public we dont need to worry about access modifiers
 
 public:
-    // For special cases, we might need the size function to get the size of a LL
+    //For special cases, we might need the size function to get the size of a LL
+    //UTILITY MEMBERS
     int sizeofLL(const Node *head)
     {
         const Node *temp = head;
@@ -88,6 +77,17 @@ public:
             size++;
         }
         return size;
+    }
+    void printLL(Node *head)
+    {
+        Node *curr = head;
+        while (curr != nullptr)
+        {
+            /* code */
+            cout << curr->data << "->";
+            curr = curr->next;
+        }
+        cout << "NULL" << endl;
     }
 
     Node *removeHead(Node *head)
@@ -188,17 +188,17 @@ public:
         return head;
     }
 
-    void deleteLL(Node* head){
-        Node* temp = head;
+    void deleteLL(Node *head)
+    {
+        Node *temp = head;
         while (temp != nullptr)
         {
             /* code */
-        Node* nodetoDelete = temp; 
-        temp=temp->next;
-        delete nodetoDelete;
-        nodetoDelete = nullptr;
+            Node *nodetoDelete = temp;
+            temp = temp->next;
+            delete nodetoDelete;
+            nodetoDelete = nullptr;
         }
-        
     }
 };
 

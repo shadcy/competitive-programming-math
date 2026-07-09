@@ -56,7 +56,7 @@ void printLL(Node* head){
  }
  cout<<"NULL"<<endl;
 }
-//hi lol
+
 
 int main() {
  

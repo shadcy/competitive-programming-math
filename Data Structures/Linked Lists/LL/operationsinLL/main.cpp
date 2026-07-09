@@ -19,7 +19,6 @@ class Node
 public:
     int data;
     Node *next; // pointer pointing to the next node
-
     // constructor
     Node()
     {
@@ -39,7 +38,6 @@ public:
     // here we have covered all the cases which, person can create an obj ig
 };
 
-// this piece of shit is using the
 Node *arraytoLL(vector<int> &arr)
 {
     if (arr.empty())
@@ -63,10 +61,9 @@ class Operation
 {
     // this class does is to give access to diff operations performed on the LL
     // as the node class is all public we dont need to worry about access modifiers
-
 public:
-    //For special cases, we might need the size function to get the size of a LL
-    //UTILITY MEMBERS
+    // For special cases, we might need the size function to get the size of a LL
+    // UTILITY MEMBERS
     int sizeofLL(const Node *head)
     {
         const Node *temp = head;
@@ -89,7 +86,6 @@ public:
         }
         cout << "NULL" << endl;
     }
-
     Node *removeHead(Node *head)
     {
         /**
@@ -126,7 +122,6 @@ public:
             return head;
         }
     }
-
     Node *removeTail(Node *head)
     {
         // the complexity of this is going to be O(n) w/o tail pointer
@@ -164,7 +159,6 @@ public:
         temp->next = nullptr;
         return head;
     }
-
     Node *removeNode(Node *head, int pos)
     {
         int currSize = sizeofLL(head);
@@ -188,6 +182,69 @@ public:
         return head;
     }
 
+    Node *addHead(Node *head, int value)
+    {
+        // Edge cases?
+        Node *newNode = new Node(value);
+        newNode->next = head;
+        head = newNode;
+        return head;
+    }
+    Node *addTail(Node *head, int value)
+    {
+        if(head == nullptr){
+           Node* newNode = new Node(value);
+           return newNode;
+        }
+        Node *temp = head;
+        while (temp->next != nullptr)
+        {
+            temp = temp->next;
+        }
+        Node *newNode = new Node(value);
+        temp->next = newNode;
+        newNode->next = nullptr;
+        return head;
+    }
+    Node *addNode(Node* head, int value, int pos) {
+        //general purpose function to add nodes covering the edge cases for adding at the head and adding at the tail
+        // Edge case: Boundry condition
+        //To save some more cycles from calling the same function
+        int currSize = sizeofLL(head);
+        if(pos < 1 && pos > currSize+1){
+            cout<<"Invalid Position \n";
+            return head;
+        }
+        //Edge case: No node; we create a new pointer and 
+        if(head == nullptr){
+            Node* newNode = new Node(value);
+            return newNode;
+        }
+        //Edge case: if pos == sizeofLL + 1 mean we are adding at the tail so
+        if(pos == (currSize+1)){
+            head = addTail(head, value);
+            return head;
+        }
+        //Edge case: if pos == 1 its a addition to head
+        if(pos == 1){
+           head = addHead(head, value);
+           return head;
+        }
+        //Otherwise
+        Node* temp = head;
+        for (int i = 1; i < pos-1; i++)
+        {
+            temp = temp->next;
+        }
+        //we are at pos-1
+        Node* newNode = new Node(value);
+        newNode->next = temp->next;
+        temp->next= newNode;
+
+        
+        return head;
+    }
+
     void deleteLL(Node *head)
     {
         Node *temp = head;
@@ -204,13 +261,11 @@ public:
 
 int main()
 {
-
-    vector<int> exampleArray = {0, 1, 2, 3};
+    vector<int> exampleArray = {1, 3, 4, 5};
     Operation ops;
     Node *exampleLL = arraytoLL(exampleArray);
-    printLL(exampleLL);
+    ops.printLL(exampleLL);
     cout << "Size : " << ops.sizeofLL(exampleLL) << endl;
-    // exampleLL = ops.removeHead(exampleLL);
-    exampleLL = ops.removeTail(exampleLL);
-    printLL(exampleLL);
+    exampleLL = ops.addNode(exampleLL,2, 2);
+    ops.printLL(exampleLL);
 }

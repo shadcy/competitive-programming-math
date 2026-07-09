@@ -192,9 +192,10 @@ public:
     }
     Node *addTail(Node *head, int value)
     {
-        if(head == nullptr){
-           Node* newNode = new Node(value);
-           return newNode;
+        if (head == nullptr)
+        {
+            Node *newNode = new Node(value);
+            return newNode;
         }
         Node *temp = head;
         while (temp->next != nullptr)
@@ -206,42 +207,50 @@ public:
         newNode->next = nullptr;
         return head;
     }
-    Node *addNode(Node* head, int value, int pos) {
-        //general purpose function to add nodes covering the edge cases for adding at the head and adding at the tail
-        // Edge case: Boundry condition
-        //To save some more cycles from calling the same function
+    Node *addNode(Node *head, int value, int pos)
+    {
+        // general purpose function to add nodes covering the edge cases for adding at the head and adding at the tail
+        //  Edge case: Boundry condition
+        // To save some more cycles from calling the same function
         int currSize = sizeofLL(head);
-        if(pos < 1 && pos > currSize+1){
-            cout<<"Invalid Position \n";
+        if (pos < 1 || pos > currSize + 1)
+        {
+            cout << "Invalid Position \n";
             return head;
         }
-        //Edge case: No node; we create a new pointer and 
-        if(head == nullptr){
-            Node* newNode = new Node(value);
-            return newNode;
+        // Edge case: No node; we create a new pointer and
+        if (head == nullptr)
+        {
+            if (pos != 1)
+            {
+                cout << "Invalid Position\n";
+                return nullptr;
+            }
+            return new Node(value);
         }
-        //Edge case: if pos == sizeofLL + 1 mean we are adding at the tail so
-        if(pos == (currSize+1)){
+        // Edge case: if pos == sizeofLL + 1 mean we are adding at the tail so
+        if (pos == (currSize + 1))
+        {
             head = addTail(head, value);
             return head;
         }
-        //Edge case: if pos == 1 its a addition to head
-        if(pos == 1){
-           head = addHead(head, value);
-           return head;
+        // Edge case: if pos == 1 its a addition to head
+        if (pos == 1)
+        {
+            head = addHead(head, value);
+            return head;
         }
-        //Otherwise
-        Node* temp = head;
-        for (int i = 1; i < pos-1; i++)
+        // Otherwise
+        Node *temp = head;
+        for (int i = 1; i < pos - 1; i++)
         {
             temp = temp->next;
         }
-        //we are at pos-1
-        Node* newNode = new Node(value);
+        // we are at pos-1
+        Node *newNode = new Node(value);
         newNode->next = temp->next;
-        temp->next= newNode;
+        temp->next = newNode;
 
-        
         return head;
     }
 
@@ -266,6 +275,6 @@ int main()
     Node *exampleLL = arraytoLL(exampleArray);
     ops.printLL(exampleLL);
     cout << "Size : " << ops.sizeofLL(exampleLL) << endl;
-    exampleLL = ops.addNode(exampleLL,2, 2);
+    exampleLL = ops.addNode(exampleLL, 2, 2);
     ops.printLL(exampleLL);
 }

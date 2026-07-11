@@ -9,7 +9,7 @@ using namespace std;
 string revstring(string s, int i){
     //s is the string itself, and i is the tracker
    if(i<0){
-    return ""; //stop asap
+    return ""; //stop and return empty string
    }
     cout<<s[i];
     return revstring(s, i-1);

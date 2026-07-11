@@ -130,7 +130,7 @@ void solve() {
     //no need for b as its already strictly increasing
     //check for the sets whats missing and whats needed
     rep(i, 0, n){
-        a[i] + (abs(msa(i) - b[i]));
+        a[i] + (abs(msa[i] - b[i]));
     }
 
 

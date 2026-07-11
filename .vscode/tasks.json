@@ -1,6 +1,20 @@
 {
     "tasks": [
         {
+            "label": "Clean compiled outputs",
+            "type": "shell",
+            "command": "${workspaceFolder}/clean.sh",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
             "type": "cppbuild",
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",

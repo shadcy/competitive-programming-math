@@ -9,7 +9,8 @@
 using namespace std;
 
 int isSorted( vector<int>& arr, int i){
-
+    //base case
+    if(arr[i-1] <)
     //recursive
     isSorted(arr, i-1);
 }

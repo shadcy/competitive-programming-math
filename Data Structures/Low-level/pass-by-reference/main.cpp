@@ -8,8 +8,9 @@
 using namespace std;
 
 //func with pass by ref
-void increment_wref(int &x){
+int increment_wref(int &x){
   x++; //x is incremented by 1
+  return x;
 }
 
 //func with pass by val
@@ -31,7 +32,7 @@ int main() {
 //  cout<<a<<endl;
 
 //for pass by val
- cout<<increment_wval(a);
-
+ cout<<increment_wref(a);
+ cout<<a;
 
 }

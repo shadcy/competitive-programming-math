@@ -162,6 +162,10 @@ Node *sortLL(Node *head)
     }
     // return the zero head
     return zeroHead->next;
+    // rule of thumb;
+    delete zeroHead;
+    delete oneHead;
+    delete twoHead;  
 }
 
 int main()
